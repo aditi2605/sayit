@@ -1,0 +1,29 @@
+## .NET
+bin/
+obj/
+*.user
+*.suo
+*.DotSettings.user
+*.csproj.user
+.vs/
+TestResults/
+
+## Node (frontend)
+node_modules/
+dist/
+.env
+.env.local
+.env.*.local
+
+## IDE
+.idea/
+.vscode/settings.json
+*.swp
+*.swo
+.DS_Store
+
+## Docker
+pgdata/
+
+## Secrets
+appsettings.Development.json
