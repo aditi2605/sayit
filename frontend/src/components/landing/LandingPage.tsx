@@ -64,16 +64,18 @@ function WCard({ children, rotate = 0, radius = "24px 8px 28px 12px", pad, style
   );
 }
 
-
-/* NAV */
-function Nav({ scrolled, mob, onLogin, onSignup }: { scrolled: boolean; mob: boolean; onLogin: () => void; onSignup: () => void }) {
-  const [open, setOpen] = useState(false);
-    const handleScroll = (selector: string) => {
+//Handlescroll function (direct to the dif section on lending page )
+ const handleScroll = (selector: string) => {
       const el = document.querySelector(selector);
       el?.scrollIntoView({
         behavior: "smooth"
       });
     };
+
+
+/* NAV */
+function Nav({ scrolled, mob, onLogin, onSignup }: { scrolled: boolean; mob: boolean; onLogin: () => void; onSignup: () => void }) {
+  const [open, setOpen] = useState(false);
   return (
     <>
       <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, padding: mob ? "14px 20px" : "16px 48px", background: scrolled ? "rgba(12,10,18,0.92)" : "transparent", backdropFilter: scrolled ? "blur(20px)" : "none", transition: "all 0.5s ease", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
@@ -139,7 +141,7 @@ function Hero({ mob, onSignup }: { mob: boolean; onSignup: () => void }) {
       <R d={0.6}>
         <div style={{ display: "flex", gap: 14, flexDirection: mob ? "column" : "row", alignItems: "center", width: mob ? "100%" : "auto" }}>
           <button onClick={onSignup} style={{ background: "#ffe45e", border: "none", borderRadius: "18px 6px 22px 10px", padding: mob ? "17px 15px" : "17px 38px", width: mob ? "100%" : "auto", color: "#0C0A12", fontSize: mob ? 16 : 17, fontWeight: 700, fontFamily: F1, cursor: "pointer", boxShadow: "4px 4px 0 #ff5757", transform: "rotate(-1deg)", transition: "all 0.35s" }}>join the discussion →</button>
-          <button style={{ background: "transparent", border: "2px solid rgba(255,255,255,0.15)", borderRadius: "16px 8px 20px 10px", padding: mob ? "15px 0" : "15px 32px", width: mob ? "100%" : "auto", color: "rgba(255,255,255,0.6)", fontSize: mob ? 15 : 16, fontWeight: 600, fontFamily: F2, cursor: "pointer", transform: "rotate(1deg)" }}>see how it works ↓</button>
+          <button onClick={() => handleScroll(".howitworks")} style={{ background: "transparent", border: "2px solid rgba(255,255,255,0.15)", borderRadius: "16px 8px 20px 10px", padding: mob ? "15px 0" : "15px 32px", width: mob ? "100%" : "auto", color: "rgba(255,255,255,0.6)", fontSize: mob ? 15 : 16, fontWeight: 600, fontFamily: F2, cursor: "pointer", transform: "rotate(1deg)" }}>see how it works ↓</button>
         </div>
       </R>
 
