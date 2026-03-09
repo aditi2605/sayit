@@ -100,10 +100,72 @@ function Nav({ scrolled, mob, onLogin, onSignup }: { scrolled: boolean; mob: boo
           </div>
         )}
       </nav>
-      {mob && <div style={{ position: "fixed", inset: 0, zIndex: 99, background: "#0C0A12", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 24, opacity: open ? 1 : 0, pointerEvents: open ? "auto" : "none", transition: "opacity 0.4s" }}>
-        {[{ label: "How it works", selector: ".howitworks" }, { label: "Topics", selector: ".topics"}, { label: "Community", selector: ".community"}].map((l, i) => <a key={l.label} href="#" onClick={() => { setOpen(false); handleScroll(l.selector);}} style={{ color: "#fff", textDecoration: "none", fontSize: 32, fontFamily: F1, fontWeight: 600, transform: `rotate(${(i - 1) * 3}deg)` }}>{l.label}</a>)}
-        <button onClick={() => { setOpen(false); onSignup(); }} style={{ marginTop: 12, background: "#ffe45e", border: "none", borderRadius: "16px 8px 20px 10px", padding: "16px 40px", color: "#0C0A12", fontSize: 18, fontFamily: F1, fontWeight: 700, cursor: "pointer", transform: "rotate(-2deg)", boxShadow: "4px 4px 0 #ff5757" }}>Join the chaos</button>
-      </div>}
+      {mob && (
+        <div
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 99,
+            background: "#0C0A12",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 24,
+            opacity: open ? 1 : 0,
+            pointerEvents: open ? "auto" : "none",
+            transition: "opacity 0.4s",
+          }}
+        >
+          {[
+            { label: "How it works", selector: ".howitworks" },
+            { label: "Topics", selector: ".topics" },
+            { label: "Community", selector: ".community" },
+          ].map((l, i) => (
+            <button
+              key={l.label}
+              onClick={() => {
+                setOpen(false);    
+                handleScroll(l.selector);  
+              }}
+              style={{
+                background: "none",
+                border: "none",
+                color: "#fff",
+                fontSize: 32,
+                fontFamily: F1,
+                fontWeight: 600,
+                cursor: "pointer",
+                transform: `rotate(${(i - 1) * 3}deg)`,
+              }}
+            >
+              {l.label}
+            </button>
+          ))}
+          <button
+            onClick={() => {
+              setOpen(false);
+              onSignup();
+            }}
+            style={{
+              marginTop: 12,
+              background: "#ffe45e",
+              border: "none",
+              borderRadius: "16px 8px 20px 10px",
+              padding: "16px 40px",
+              color: "#0C0A12",
+              fontSize: 18,
+              fontFamily: F1,
+              fontWeight: 700,
+              cursor: "pointer",
+              transform: "rotate(-2deg)",
+              boxShadow: "4px 4px 0 #ff5757",
+            }}
+          >
+            Join the chaos
+          </button>
+        </div>
+      )}
     </>
   );
 }

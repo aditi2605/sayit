@@ -91,7 +91,7 @@ export default function AuthPage() {
                 <span style={{ fontSize: 13, color: "rgba(255,255,255,0.45)", fontFamily: F2, fontStyle: "italic" }}>"{p.text}"</span>
               </div>
             ))}
-            <div style={{ marginTop: "auto", paddingTop: 20, display: "flex", gap: 16, color: "rgba(255,255,255,0.15)", fontSize: 11.5, fontFamily: F1 }}><span>Privacy</span><span>·</span><span>Terms</span><span>·</span><span>Safety</span></div>
+            <div style={{ marginTop: "auto", paddingTop: 20, display: "flex", gap: 16, color: "var(--text)", fontSize: 11.5, fontFamily: F1 }}><span>Privacy</span><span>·</span><span>Terms</span><span>·</span><span>Safety</span></div>
           </div>
         </R>}
 
@@ -133,11 +133,11 @@ export default function AuthPage() {
 
             <button onClick={handleSubmit} disabled={isLoading} style={{ width: "100%", marginTop: 24, background: isLoading ? "rgba(255,228,94,0.3)" : "#ffe45e", border: "none", borderRadius: "18px 6px 22px 10px", padding: "16px 0", color: "#0C0A12", fontSize: 16, fontWeight: 700, fontFamily: F1, cursor: isLoading ? "wait" : "pointer", boxShadow: "4px 4px 0 #ff5757", transform: "rotate(-0.5deg)", transition: "all 0.35s" }}>{isLoading ? "..." : isLogin ? "let me in 🎭" : "create my identity 🚀"}</button>
 
-            <p style={{ textAlign: "center", marginTop: 22, fontSize: 13.5, color: "rgba(255,255,255,0.3)", fontFamily: F2 }}>
+            <p style={{ textAlign: "center", marginTop: 22, marginRight: 22, fontSize: 13.5, color: "var(--text)", fontFamily: F2 }}>
               {isLogin ? "no account yet? " : "already have one? "}
               <button onClick={() => { setMode(isLogin ? "signup" : "login"); setLocalError(""); }} style={{ background: "none", border: "none", color: "#ffe45e", fontSize: 13.5, fontWeight: 600, fontFamily: F1, cursor: "pointer", padding: 0 }}>{isLogin ? "join the chaos →" : "log in →"}</button>
             </p>
-            <div style={{ textAlign: "center", marginTop: 12 }}><a href="#" onClick={e => { e.preventDefault(); navigate("/"); }} style={{ color: "rgba(255,255,255,0.18)", fontSize: 12, fontFamily: F2, textDecoration: "none" }}>← back to homepage</a></div>
+            <div style={{ textAlign: "center", marginTop: 12 }}><a href="#" onClick={e => { e.preventDefault(); navigate("/"); }} style={{ color: "#ffe45e", fontSize: 13.5,fontWeight: 600, fontFamily: F2, textDecoration: "none" }}>← back to homepage</a></div>
           </div>
         </R>
       </div>
