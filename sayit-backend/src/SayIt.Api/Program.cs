@@ -66,7 +66,7 @@ builder.Services.AddAuthorization();
 
 // CORS
 var allowedOrigins = Environment.GetEnvironmentVariable("ALLOWED_ORIGINS")?.Split(",")
-    ?? new[] { "http://localhost:5173", "http://localhost:3000", "https://sayit-eight.vercel.app" };
+    ?? new[] { "https://sayit-eight.vercel.app", "http://localhost:5173", "http://localhost:3000" };
 
 builder.Services.AddCors(options =>
 {
@@ -102,11 +102,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors("AllowFrontend");
 
-// Rate limiting — BEFORE auth so it catches login attempts
-app.UseMiddleware<RateLimitMiddleware>();
-
 app.UseAuthentication();
 app.UseAuthorization();
+
+// Rate limiting — BEFORE auth so it catches login attempts
+app.UseMiddleware<RateLimitMiddleware>();
 
 app.MapControllers();
 app.MapHub<ThreadHub>("/hubs/threads");

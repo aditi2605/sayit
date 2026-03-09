@@ -35,6 +35,12 @@ public class RateLimitMiddleware
 
     public async Task InvokeAsync(HttpContext context)
     {
+        if (context.Request.Method == "OPTIONS")
+        {
+            await _next(context);
+            return;
+        }
+        
         var method = context.Request.Method;
         var path = context.Request.Path.Value?.ToLowerInvariant() ?? "";
 
