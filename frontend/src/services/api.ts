@@ -32,10 +32,10 @@ api.interceptors.request.use((config) => {
 // Auth
 export const authApi = {
   register: (data: RegisterRequest) =>
-    api.post<AuthResponse>("/Auth/register", data),
+    api.post<AuthResponse>("/auth/register", data),
 
   login: (data: LoginRequest) =>
-    api.post<AuthResponse>("/Auth/login", data),
+    api.post<AuthResponse>("/auth/login", data),
 };
 
 // Threads

@@ -66,7 +66,7 @@ builder.Services.AddAuthorization();
 
 // CORS
 var allowedOrigins = Environment.GetEnvironmentVariable("ALLOWED_ORIGINS")?.Split(",")
-    ?? new[] { "http://localhost:5173", "http://localhost:3000" };
+    ?? new[] { "http://localhost:5173", "http://localhost:3000", "https://sayit-eight.vercel.app" };
 
 builder.Services.AddCors(options =>
 {

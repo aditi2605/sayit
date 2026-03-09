@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, type ReactNode, type CSSProperties } from "react";
-import { useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 
 const F1 = "var(--f1)";
 const F2 = "var(--f2)";
@@ -276,10 +276,15 @@ function Foot({ mob }: { mob: boolean }) {
       <div style={{ maxWidth: 1100, margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexDirection: mob ? "column" : "row", gap: 14 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
           <span style={{ fontSize: 18, fontWeight: 700, fontFamily: F1, color: "#ffe45e" }}>SayIt</span>
-          <span style={{ color: "rgba(255,255,255,0.12)", fontSize: 11, fontFamily: F1 }}>© 2026</span>
+          <span style={{ color: "var(--text)", fontSize: 12, fontFamily: F1 }}>© 2026</span>
+        </div>
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <span style={{ fontSize: 18, fontWeight: 700, fontFamily: F1, color: "#ffe45e" }}>Made By</span>
+          <span style={{ color: "var(--text)", fontSize: 12, fontFamily: F1 }}>💛</span>
+          <span style={{ color: "var(--text)", fontSize: 15, fontFamily: F1 }}><a href="https://aditiparikh.uk/">Aditi Parikh</a></span>
         </div>
         <div style={{ display: "flex", gap: mob ? 16 : 24, flexWrap: "wrap", justifyContent: "center" }}>
-          {["Privacy", "Terms", "Safety", "Blog"].map(l => <a key={l} href="#" style={{ color: "var(--text-dim)", textDecoration: "none", fontSize: 12.5, fontFamily: F2 }}>{l}</a>)}
+          {["Privacy", "Terms", "Safety", "Blog"].map(l => <a key={l} href="#" style={{ color: "var(--text)", textDecoration: "none", fontSize: 12.5, fontFamily: F2 }}>{l}</a>)}
         </div>
       </div>
     </footer>
