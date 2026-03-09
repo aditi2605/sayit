@@ -72,7 +72,6 @@ function WCard({ children, rotate = 0, radius = "24px 8px 28px 12px", pad, style
       });
     };
 
-
 /* NAV */
 function Nav({ scrolled, mob, onLogin, onSignup }: { scrolled: boolean; mob: boolean; onLogin: () => void; onSignup: () => void }) {
   const [open, setOpen] = useState(false);

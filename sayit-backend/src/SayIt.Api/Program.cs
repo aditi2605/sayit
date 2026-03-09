@@ -30,9 +30,16 @@ builder.Services.AddScoped<AuthService>();
 builder.Services.AddHostedService<RateLimitCleanupService>();
 
 //JWT Auth 
-var jwtSecret = Environment.GetEnvironmentVariable("JWT_SECRET")
-    ?? builder.Configuration["Jwt:Secret"]
-    ?? "dev-secret-key-change-in-production-min-32-chars!!";
+var jwtSecret = Environment.GetEnvironmentVariable("JWT_SECRET");
+
+if (string.IsNullOrEmpty(jwtSecret))
+{
+    throw new Exception("JWT_SECRET not configured.");
+}
+
+// var jwtSecret = Environment.GetEnvironmentVariable("JWT_SECRET")
+//     ?? builder.Configuration["Jwt:Secret"]
+//     ?? "dev-secret-key-change-in-production-min-32-chars!!";
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
