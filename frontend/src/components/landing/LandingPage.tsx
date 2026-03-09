@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, type ReactNode, type CSSProperties } from "react";
-import { useNavigate, Link} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const F1 = "var(--f1)";
 const F2 = "var(--f2)";
@@ -292,7 +292,7 @@ export default function LandingPage() {
   const [scrolled, setScrolled] = useState(false);
   const w = useWin();
   const mob = w < 768;
-  const mq = ["tech debates", "anonymous discussions", "hot takes", "science threads", "career advice", "memes", "honest opinions", "no filters"];
+  // const mq = ["tech debates", "anonymous discussions", "hot takes", "science threads", "career advice", "memes", "honest opinions", "no filters"];
 
   useEffect(() => {
     const h = () => setScrolled(window.scrollY > 50);
