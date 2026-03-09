@@ -1,0 +1,19 @@
+# render.yaml — put this in the root of your sayit repo
+services:
+  - type: web
+    name: sayit-api
+    runtime: docker
+    dockerfilePath: ./sayit-backend/Dockerfile
+    dockerContext: ./sayit-backend
+    region: oregon
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: DATABASE_URL
+        sync: false  # You'll set this manually in Render dashboard
+      - key: JWT_SECRET
+        generateValue: true  # Render auto-generates a secure random value
+      - key: ALLOWED_ORIGINS
+        sync: false  # Set to your Vercel URL after deploying frontend
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
