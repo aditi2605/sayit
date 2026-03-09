@@ -1,7 +1,7 @@
 namespace SayIt.Core.DTOs;
 
 public record ToggleReactionRequest(
-    string TargetType,  // "thread" or "reply"
+    string TargetType, 
     Guid TargetId,
     string Emoji
 );

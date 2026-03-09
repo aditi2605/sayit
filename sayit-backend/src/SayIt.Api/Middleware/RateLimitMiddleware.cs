@@ -21,10 +21,10 @@ public class RateLimitMiddleware
         // Thread creation: 5 per hour
         { "POST:/api/threads", new RateRule(5, TimeSpan.FromHours(1)) },
 
-        // Replies: 15 per hour (more generous since discussions need flow)
+        // Replies: 15 per hour 
         { "POST:/api/threads/*/replies", new RateRule(15, TimeSpan.FromHours(1)) },
 
-        // Reactions: 30 per hour (quick actions, need more allowance)
+        // Reactions: 30 per hour 
         { "POST:/api/reactions/toggle", new RateRule(30, TimeSpan.FromHours(1)) },
     };
 
@@ -117,7 +117,7 @@ public class RateLimitMiddleware
         return null;
     }
 
-    // Cleanup old entries periodically (call from a background service or timer)
+    // Cleanup old entries periodically (call from a background service )
     public static void Cleanup()
     {
         var now = DateTime.UtcNow;

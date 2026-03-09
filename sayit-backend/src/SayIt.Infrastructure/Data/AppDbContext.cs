@@ -17,13 +17,13 @@ public class AppDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
-        // ─── User ───
+        // User 
         modelBuilder.Entity<User>(entity =>
         {
             entity.HasIndex(e => e.EmailHash).IsUnique();
         });
 
-        // ─── Thread ───
+        //Thread
         modelBuilder.Entity<Core.Entities.Thread>(entity =>
         {
             entity.HasIndex(e => new { e.ChannelId, e.CreatedAt })
@@ -49,7 +49,7 @@ public class AppDbContext : DbContext
                   .OnDelete(DeleteBehavior.Restrict);
         });
 
-        // ─── Reply ───
+        // Reply 
         modelBuilder.Entity<Reply>(entity =>
         {
             entity.HasIndex(e => new { e.ThreadId, e.CreatedAt })
@@ -71,7 +71,7 @@ public class AppDbContext : DbContext
                   .OnDelete(DeleteBehavior.Restrict);
         });
 
-        // ─── Reaction ───
+        // Reaction 
         modelBuilder.Entity<Reaction>(entity =>
         {
             entity.HasIndex(e => new { e.TargetType, e.TargetId })

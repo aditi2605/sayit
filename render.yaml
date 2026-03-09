@@ -10,10 +10,10 @@ services:
     healthCheckPath: /health
     envVars:
       - key: DATABASE_URL
-        sync: false  # You'll set this manually in Render dashboard
+        sync: false  
       - key: JWT_SECRET
-        generateValue: true  # Render auto-generates a secure random value
+        generateValue: true 
       - key: ALLOWED_ORIGINS
-        sync: false  # Set to your Vercel URL after deploying frontend
+        sync: false  
       - key: ASPNETCORE_ENVIRONMENT
         value: Production

@@ -35,7 +35,7 @@ public class AuthService
 
     public async Task<AuthResponse> RegisterAsync(RegisterRequest request)
     {
-        // Hash email for privacy (never store plaintext)
+        // Hash email for privacy 
         var emailHash = HashEmail(request.Email);
 
         // Check if user already exists

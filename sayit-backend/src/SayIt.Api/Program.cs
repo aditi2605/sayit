@@ -12,24 +12,24 @@ using SayIt.Infrastructure.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// ─── Database (supports DATABASE_URL env var for Render/Neon) ───
+// Database (supports DATABASE_URL env var for Render/Neon) 
 var connString = Environment.GetEnvironmentVariable("DATABASE_URL")
     ?? builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connString));
 
-// ─── Repositories ───
+//Repositories 
 builder.Services.AddScoped<IThreadRepository, ThreadRepository>();
 builder.Services.AddScoped<IReplyRepository, ReplyRepository>();
 builder.Services.AddScoped<IReactionRepository, ReactionRepository>();
 builder.Services.AddScoped<IChannelRepository, ChannelRepository>();
 
-// ─── Services ───
+// Services
 builder.Services.AddScoped<AuthService>();
 
-// ─── Rate Limit Cleanup Background Service ───
+//Rate Limit Cleanup Background Service 
 builder.Services.AddHostedService<RateLimitCleanupService>();
 
-// ─── JWT Auth ───
+//JWT Auth 
 var jwtSecret = Environment.GetEnvironmentVariable("JWT_SECRET")
     ?? builder.Configuration["Jwt:Secret"]
     ?? "dev-secret-key-change-in-production-min-32-chars!!";
@@ -64,7 +64,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddAuthorization();
 
-// ─── CORS (local dev + Vercel production) ───
+// CORS
 var allowedOrigins = Environment.GetEnvironmentVariable("ALLOWED_ORIGINS")?.Split(",")
     ?? new[] { "http://localhost:5173", "http://localhost:3000" };
 
@@ -79,21 +79,21 @@ builder.Services.AddCors(options =>
     });
 });
 
-// ─── SignalR ───
+// SignalR 
 builder.Services.AddSignalR();
 
-// ─── Controllers + Swagger ───
+//Controllers + Swagger
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// ─── Port config for Render (uses PORT env var) ───
+// Port config for Render 
 var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
 builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
 
 var app = builder.Build();
 
-// ─── Middleware Pipeline ───
+// Middleware Pipeline 
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
