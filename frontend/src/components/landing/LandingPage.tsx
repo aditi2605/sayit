@@ -64,15 +64,6 @@ function WCard({ children, rotate = 0, radius = "24px 8px 28px 12px", pad, style
   );
 }
 
-/* Marquee  */
-function Marquee({ items, speed = 30, reverse = false }: { items: string[]; speed?: number; reverse?: boolean }) {
-  const content = [...items, ...items, ...items].map((item, i) => (
-    <span key={i} style={{ fontSize: 15, fontFamily: F1, color: "rgba(255,255,255,0.1)", fontWeight: 600, letterSpacing: 1, textTransform: "uppercase", display: "inline-flex", alignItems: "center", gap: 12, whiteSpace: "nowrap", flexShrink: 0 }}>
-      {item} <span style={{ color: "#ffe45e", fontSize: 10 }}>✦</span>
-    </span>
-  ));
-  // return <div style={{ overflow: "hidden", width: "100%" }}><div style={{ display: "inline-flex", gap: 32, whiteSpace: "nowrap", animation: `marqueeScroll ${speed}s linear infinite`, animationDirection: reverse ? "reverse" : "normal" }}>{content}</div></div>;
-}
 
 /* NAV */
 function Nav({ scrolled, mob, onLogin, onSignup }: { scrolled: boolean; mob: boolean; onLogin: () => void; onSignup: () => void }) {
@@ -94,23 +85,22 @@ function Nav({ scrolled, mob, onLogin, onSignup }: { scrolled: boolean; mob: boo
           <button onClick={() => setOpen(!open)} style={{ background: "#ffe45e", border: "none", borderRadius: "8px 4px 10px 6px", width: 38, height: 38, cursor: "pointer", fontSize: 18, transform: "rotate(3deg)", boxShadow: "2px 2px 0 #ff5757", display: "flex", alignItems: "center", justifyContent: "center" }}>{open ? "✕" : "☰"}</button>
         ) : (
           <div style={{ display: "flex", alignItems: "center", gap: 28 }}>
-            {/* {["How it works", "Topics", "Community"].map((l, i) => (
-              <a key={l} href="#" style={{ color: "rgba(255,255,255,0.55)", textDecoration: "none", fontSize: 14, fontFamily: F2, fontWeight: 500, transition: "all 0.25s", transform: `rotate(${(i - 1) * 1.5}deg)`, display: "inline-block" }}
-                onMouseEnter={e => { (e.target as HTMLElement).style.color = "#ffe45e"; }} onMouseLeave={e => { (e.target as HTMLElement).style.color = "rgba(255,255,255,0.55)"; }}>{l}</a>
-            ))} */}
-            <a href="howitwork" style={{ color: "rgba(255,255,255,0.55)", textDecoration: "none", fontSize: 14, fontFamily: F2, fontWeight: 500, transition: "all 0.25s", display: "inline-block" }}
-              onMouseEnter={e => { (e.target as HTMLElement).style.color = "#ffe45e"; }} onMouseLeave={e => { (e.target as HTMLElement).style.color = "rgba(255,255,255,0.55)"; }}><Link onClick= {() => handleScroll(".howitworks")} to="#">How It Works</Link></a>
-            <a href="#" style={{ color: "rgba(255,255,255,0.55)", textDecoration: "none", fontSize: 14, fontFamily: F2, fontWeight: 500, transition: "all 0.25s", display: "inline-block" }}
-                onMouseEnter={e => { (e.target as HTMLElement).style.color = "#ffe45e"; }} onMouseLeave={e => { (e.target as HTMLElement).style.color = "rgba(255,255,255,0.55)"; }}><Link onClick={() => handleScroll(".topics")} to="#">Topics</Link></a>
-            <a href="#" style={{ color: "rgba(255,255,255,0.55)", textDecoration: "none", fontSize: 14, fontFamily: F2, fontWeight: 500, transition: "all 0.25s", display: "inline-block" }}
-                onMouseEnter={e => { (e.target as HTMLElement).style.color = "#ffe45e"; }} onMouseLeave={e => { (e.target as HTMLElement).style.color = "rgba(255,255,255,0.55)"; }}><Link onClick={() => handleScroll(".community")} to="#">Community</Link></a>
+            <button onClick={() => handleScroll(".howitworks")} style={{ color: "rgba(255,255,255,0.55)", textDecoration: "none", fontSize: 14, fontFamily: F2, fontWeight: 500, transition: "all 0.25s", display: "inline-block" }}>
+              How It Works
+            </button>
+            <button onClick={() => handleScroll(".topics")} style={{ color: "rgba(255,255,255,0.55)", textDecoration: "none", fontSize: 14, fontFamily: F2, fontWeight: 500, transition: "all 0.25s", display: "inline-block" }}>
+              Topics
+            </button>
+            <button onClick={() => handleScroll(".community")} style={{ color: "rgba(255,255,255,0.55)", textDecoration: "none", fontSize: 14, fontFamily: F2, fontWeight: 500, transition: "all 0.25s", display: "inline-block" }}>
+              Community
+            </button>
             <button onClick={onLogin} style={{ background: "transparent", border: "2px solid rgba(255,255,255,0.2)", borderRadius: "14px 6px 16px 8px", padding: "8px 20px", color: "#fff", fontSize: 13.5, fontFamily: F2, fontWeight: 600, cursor: "pointer", transform: "rotate(-1deg)" }}>Log in</button>
             <button onClick={onSignup} style={{ background: "#ffe45e", border: "none", borderRadius: "14px 6px 18px 8px", padding: "9px 24px", color: "#0C0A12", fontSize: 14, fontFamily: F1, fontWeight: 600, cursor: "pointer", transform: "rotate(1.5deg)", boxShadow: "3px 3px 0 #ff5757" }}>Join the chaos</button>
           </div>
         )}
       </nav>
       {mob && <div style={{ position: "fixed", inset: 0, zIndex: 99, background: "#0C0A12", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 24, opacity: open ? 1 : 0, pointerEvents: open ? "auto" : "none", transition: "opacity 0.4s" }}>
-        {["How it works", "Topics", "Community"].map((l, i) => <a key={l} href="#" onClick={() => setOpen(false)} style={{ color: "#fff", textDecoration: "none", fontSize: 32, fontFamily: F1, fontWeight: 600, transform: `rotate(${(i - 1) * 3}deg)` }}>{l}</a>)}
+        {[{ label: "How it works", selector: ".howitworks" }, { label: "Topics", selector: ".topics"}, { label: "Community", selector: ".community"}].map((l, i) => <a key={l.label} href="#" onClick={() => { setOpen(false); handleScroll(l.selector);}} style={{ color: "#fff", textDecoration: "none", fontSize: 32, fontFamily: F1, fontWeight: 600, transform: `rotate(${(i - 1) * 3}deg)` }}>{l.label}</a>)}
         <button onClick={() => { setOpen(false); onSignup(); }} style={{ marginTop: 12, background: "#ffe45e", border: "none", borderRadius: "16px 8px 20px 10px", padding: "16px 40px", color: "#0C0A12", fontSize: 18, fontFamily: F1, fontWeight: 700, cursor: "pointer", transform: "rotate(-2deg)", boxShadow: "4px 4px 0 #ff5757" }}>Join the chaos</button>
       </div>}
     </>
@@ -148,7 +138,7 @@ function Hero({ mob, onSignup }: { mob: boolean; onSignup: () => void }) {
 
       <R d={0.6}>
         <div style={{ display: "flex", gap: 14, flexDirection: mob ? "column" : "row", alignItems: "center", width: mob ? "100%" : "auto" }}>
-          <button onClick={onSignup} style={{ background: "#ffe45e", border: "none", borderRadius: "18px 6px 22px 10px", padding: mob ? "17px 0" : "17px 38px", width: mob ? "100%" : "auto", color: "#0C0A12", fontSize: mob ? 16 : 17, fontWeight: 700, fontFamily: F1, cursor: "pointer", boxShadow: "4px 4px 0 #ff5757", transform: "rotate(-1deg)", transition: "all 0.35s" }}>join the discussion →</button>
+          <button onClick={onSignup} style={{ background: "#ffe45e", border: "none", borderRadius: "18px 6px 22px 10px", padding: mob ? "17px 15px" : "17px 38px", width: mob ? "100%" : "auto", color: "#0C0A12", fontSize: mob ? 16 : 17, fontWeight: 700, fontFamily: F1, cursor: "pointer", boxShadow: "4px 4px 0 #ff5757", transform: "rotate(-1deg)", transition: "all 0.35s" }}>join the discussion →</button>
           <button style={{ background: "transparent", border: "2px solid rgba(255,255,255,0.15)", borderRadius: "16px 8px 20px 10px", padding: mob ? "15px 0" : "15px 32px", width: mob ? "100%" : "auto", color: "rgba(255,255,255,0.6)", fontSize: mob ? 15 : 16, fontWeight: 600, fontFamily: F2, cursor: "pointer", transform: "rotate(1deg)" }}>see how it works ↓</button>
         </div>
       </R>
@@ -234,7 +224,7 @@ function Proof({ mob }: { mob: boolean }) {
     { t: "love switching between anon for hot takes and public for serious threads", a: "🎭", h: "@anon_hawk" },
   ];
   return (
-    <section style={{ padding: mob ? "60px 20px 80px" : "80px 48px 120px" }}>
+    <section className="community" style={{ padding: mob ? "60px 20px 80px" : "80px 48px 120px" }}>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         <R>
           <div style={{ display: "flex", justifyContent: mob ? "space-around" : "center", gap: mob ? 16 : 72, marginBottom: mob ? 48 : 72, flexWrap: "wrap", textAlign: "center" }}>
@@ -267,7 +257,7 @@ function Proof({ mob }: { mob: boolean }) {
 /*CTA*/
 function CTA({ mob, onSignup }: { mob: boolean; onSignup: () => void }) {
   return (
-    <section className="community" style={{ padding: mob ? "80px 20px 70px" : "100px 48px", position: "relative", overflow: "hidden" }}>
+    <section  style={{ padding: mob ? "80px 20px 70px" : "100px 48px", position: "relative", overflow: "hidden" }}>
       <div style={{ position: "absolute", top: "40%", left: "50%", transform: "translate(-50%, -50%)", width: 500, height: 500, borderRadius: "42% 58% 63% 37%", background: "rgba(255,228,94,0.05)", filter: "blur(100px)", pointerEvents: "none" }} />
       <div style={{ maxWidth: 620, margin: "0 auto", textAlign: "center", position: "relative" }}>
         <R><div style={{ fontSize: mob ? 48 : 60, marginBottom: 16, display: "inline-block", transform: "rotate(-8deg)" }}>💬</div></R>
@@ -316,11 +306,11 @@ export default function LandingPage() {
     <div style={{ position: "relative" }}>
       <Nav scrolled={scrolled} mob={mob} onLogin={() => go("login")} onSignup={() => go("signup")} />
       <Hero mob={mob} onSignup={() => go("signup")} />
-      <div style={{ padding: "10px 0", opacity: 0.6, transform: "rotate(-1deg)" }}><Marquee items={mq} speed={35} /></div>
+      <div style={{ padding: "10px 0", opacity: 0.6, transform: "rotate(-1deg)" }}></div>
       <HowSection mob={mob} />
-      <div style={{ padding: "10px 0", opacity: 0.6, transform: "rotate(0.8deg)" }}><Marquee items={mq} speed={28} reverse /></div>
+      <div style={{ padding: "10px 0", opacity: 0.6, transform: "rotate(0.8deg)" }}></div>
       <Topics mob={mob} />
-      <div style={{ padding: "10px 0", opacity: 0.6, transform: "rotate(-0.5deg)" }}><Marquee items={mq} speed={32} /></div>
+      <div style={{ padding: "10px 0", opacity: 0.6, transform: "rotate(-0.5deg)" }}></div>
       <Proof mob={mob} />
       <CTA mob={mob} onSignup={() => go("signup")} />
       <Foot mob={mob} />

@@ -112,7 +112,7 @@ export default function AuthPage() {
             {/* Social */}
             <div style={{ display: "flex", gap: 10, marginBottom: 4 }}>
               {[{ icon: <FaApple /> }, { icon: <FcGoogle /> }, { icon: <FaXTwitter />}].map((s, i) => (
-                <button key={i} style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: 8, background: "rgba(255,255,255,0.03)", border: "1.5px solid rgba(255,255,255,0.06)", borderRadius: "12px 5px 14px 7px", padding: "12px 10px", color: "#fff", fontSize: 13.5, fontFamily: F2, fontWeight: 500, cursor: "pointer", transform: "rotate(-0.5deg)" }}><span style={{ fontSize: 18 }}>{s.icon}</span>{!mob && s.label}</button>
+                <button key={i} style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: 8, background: "rgba(255,255,255,0.03)", border: "1.5px solid rgba(255,255,255,0.06)", borderRadius: "12px 5px 14px 7px", padding: "12px 10px", color: "#fff", fontSize: 13.5, fontFamily: F2, fontWeight: 500, cursor: "pointer", transform: "rotate(-0.5deg)" }}><span style={{ fontSize: 18 }}>{s.icon}</span>{!mob}</button>
               ))}
             </div>
 
