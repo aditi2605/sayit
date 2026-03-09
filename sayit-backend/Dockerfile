@@ -8,7 +8,8 @@ COPY src/SayIt.Core/SayIt.Core.csproj src/SayIt.Core/
 COPY src/SayIt.Infrastructure/SayIt.Infrastructure.csproj src/SayIt.Infrastructure/
 
 # Restore
-RUN dotnet restore
+# RUN dotnet restore
+RUN dotnet restore src/SayIt.Api/SayIt.Api.csproj
 
 # Copy everything else
 COPY src/ src/
@@ -23,6 +24,7 @@ COPY --from=build /app .
 
 # Render sets PORT env var
 ENV ASPNETCORE_ENVIRONMENT=Production
+ENV ASPNETCORE_URLS=http://+:8080
 EXPOSE 8080
 
 ENTRYPOINT ["dotnet", "SayIt.Api.dll"]
