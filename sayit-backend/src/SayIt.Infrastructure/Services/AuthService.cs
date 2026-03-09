@@ -98,27 +98,55 @@ public class AuthService
 
     private string GenerateJwtToken(User user)
     {
-        var key = new SymmetricSecurityKey(
-            Encoding.UTF8.GetBytes(_config["Jwt:Secret"] ?? "dev-secret-key-change-in-production-min-32-chars!!")
-        );
+        var jwtSecret = Environment.GetEnvironmentVariable("JWT_SECRET");
+
+        if (string.IsNullOrEmpty(jwtSecret))
+            throw new Exception("JWT_SECRET not configured");
+
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSecret));
+        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
         var claims = new[]
         {
             new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
             new Claim("anon_name", user.AnonymousName),
-            new Claim("avatar", user.AvatarIndex.ToString()),
+            new Claim("avatar", user.AvatarIndex.ToString())
         };
 
         var token = new JwtSecurityToken(
-            issuer: _config["Jwt:Issuer"] ?? "sayit-api",
-            audience: _config["Jwt:Audience"] ?? "sayit-web",
+            issuer: "sayit-api",
+            audience: "sayit-web",
             claims: claims,
-            expires: DateTime.UtcNow.AddMinutes(15),
-            signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256)
+            expires: DateTime.UtcNow.AddDays(7),
+            signingCredentials: creds
         );
 
         return new JwtSecurityTokenHandler().WriteToken(token);
     }
+
+    // private string GenerateJwtToken(User user)
+    // {
+    //     var key = new SymmetricSecurityKey(
+    //         Encoding.UTF8.GetBytes(_config["Jwt:Secret"] ?? "dev-secret-key-change-in-production-min-32-chars!!")
+    //     );
+
+    //     var claims = new[]
+    //     {
+    //         new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+    //         new Claim("anon_name", user.AnonymousName),
+    //         new Claim("avatar", user.AvatarIndex.ToString()),
+    //     };
+
+    //     var token = new JwtSecurityToken(
+    //         issuer: _config["Jwt:Issuer"] ?? "sayit-api",
+    //         audience: _config["Jwt:Audience"] ?? "sayit-web",
+    //         claims: claims,
+    //         expires: DateTime.UtcNow.AddMinutes(15),
+    //         signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256)
+    //     );
+
+    //     return new JwtSecurityTokenHandler().WriteToken(token);
+    // }
 
     private static string GenerateRefreshToken()
     {
