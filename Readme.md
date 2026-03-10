@@ -142,17 +142,17 @@ git clone https://github.com/aditi2605/SayIt.git
 
 
 ## Frontend
-cd frontend
-npm install
-npm run dev
+- cd frontend
+- npm install
+- npm run dev
 
 
 ## Backend
 
 
-cd backend
-dotnet restore
-dotnet run
+- cd backend
+- dotnet restore
+- dotnet run
 
 
 ---
