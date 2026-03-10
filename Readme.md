@@ -78,8 +78,9 @@ Deployed on **Vercel**.
 
 ## Backend
 
-- **C#**
-- **.NET 9**
+- **"C# with ASP.NET Core (.NET 9)"**
+
+---
 
 Handles:
 
@@ -89,7 +90,7 @@ Handles:
 - reactions
 - API endpoints
 
-Deployed on **Render**.
+Deployed on **Render**
 
 ---
 
@@ -104,6 +105,7 @@ Used for:
 - thread activity updates
 
 ---
+
 
 ## Database
 
