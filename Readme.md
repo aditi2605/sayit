@@ -31,7 +31,7 @@ https://sayit-eight.vercel.app/
 ![Dashboard](./frontend/public/screenshots/dashboard.png)
 
 
-### Weekly Analytics
+### Create New Thread/Post
 ![New Post](./frontend/public/screenshots/createnewpost.png)
 
 
