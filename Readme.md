@@ -20,20 +20,20 @@ https://sayit-eight.vercel.app/
 *Beautiful, interactive landing page*
 
 ### Signup Page
-![Signup](./frontend/public/images/screenshots/signup.png)
+![Signup](./frontend/public/screenshots/signup.png)
 
 
 ### Login Page
-![Login](./frontend/public/images/screenshots/login.png)
+![Login](./frontend/public/screenshots/login.png)
 
 
 ### Dashboard
-![Dashboard](./frontend/public/images/screenshots/dashboard.png)
-*Track and latest updates on the different community discussions*
+![Dashboard](./frontend/public/screenshots/dashboard.png)
+
 
 ### Weekly Analytics
-![New Post](./frontend/public/images/screenshots/createnewpost.png)
-*Create your own post.*
+![New Post](./frontend/public/screenshots/createnewpost.png)
+
 
 
 
