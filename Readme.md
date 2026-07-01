@@ -13,6 +13,33 @@ https://sayit-eight.vercel.app/
 
 ---
 
+## 🖼️ Screenshots
+
+### Landing Page
+![Landing](./frontend/public/screenshots/landingpage.png)
+*Beautiful, interactive landing page*
+
+### Signup Page
+![Signup](./frontend/public/images/screenshots/signup.png)
+
+
+### Login Page
+![Login](./frontend/public/images/screenshots/login.png)
+
+
+### Dashboard
+![Dashboard](./frontend/public/images/screenshots/dashboard.png)
+*Track and latest updates on the different community discussions*
+
+### Weekly Analytics
+![New Post](./frontend/public/images/screenshots/createnewpost.png)
+*Create your own post.*
+
+
+
+---
+
+
 # What is SayIt💬?
 
 SayIt is a space for simple and open discussions.
